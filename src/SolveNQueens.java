@@ -31,7 +31,7 @@ public class SolveNQueens {
     	}
     	ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
     	ArrayList<Integer> list = new ArrayList<Integer>();
-    	solveNQueensHelper(result, list, 0, nums, n);
+    	solveNQueensHelper(result, list, 0, n);
     	ArrayList<ArrayList<String>> resultStr = result2Str(result, n);
     	//return result;
     	//System.out.println(result);
@@ -69,7 +69,7 @@ public class SolveNQueens {
     }
     
     private void solveNQueensHelper(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> list, 
-    		int depth, int[] nums, int n) {
+    		int depth, int n) {
     	if (list.size() == n) {
     		result.add(new ArrayList<Integer>(list));
     		return;
@@ -97,7 +97,7 @@ public class SolveNQueens {
     		//System.out.print(xy1);
     		//System.out.println(xy2);
     		list.add(depth * n + i);
-			solveNQueensHelper(result, list, depth + 1, nums, n);
+			solveNQueensHelper(result, list, depth + 1, n);
 			list.remove(list.size() - 1);
     	}
     }
