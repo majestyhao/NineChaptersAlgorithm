@@ -17,16 +17,16 @@ public class SingleNumberIITest {
 	@Test
 	public void testSingleNumberII() {
 		int[] A = {1,1,2,3,3,3,2,2,4,1};
-		//assertEquals(4, sn.singleNumberII(A));
+		assertEquals(4, sn.singleNumberII(A));
 	}
 
 
 	@Test
 	public void testDeci2tern() {
 		ArrayList<Integer> result = sn.deci2tern(3);
-		for (int i = 0; i < result.size(); i++) {
+		/*for (int i = 0; i < result.size(); i++) {
 			System.out.println(result.get(i));
-		}
+		}*/
 		assertEquals(3, sn.tern2deci(result));
 		result = sn.deci2tern(8);
 		assertEquals(8, sn.tern2deci(result));
@@ -46,6 +46,25 @@ public class SingleNumberIITest {
 		ArrayList<Integer> result = sn.XOR3(op1, op2);
 		result = sn.XOR3(result, op3);
 		assertEquals(0, sn.tern2deci(result));
+		result = sn.XOR3(result, op2);
+		assertEquals(3, sn.tern2deci(result));
+		op1 = sn.deci2tern(1);
+		op2 = sn.deci2tern(1);
+		op3 = sn.deci2tern(2);
+		result = sn.XOR3(op1, op2);
+		assertEquals(2, sn.tern2deci(result));
+		result = sn.XOR3(result, op3);
+		
+		assertEquals(1, sn.tern2deci(result));
+		op3 = sn.deci2tern(3);
+		for (int i = 0; i < op3.size(); i++) {
+			System.out.println(op3.get(i));
+		}
+		result = sn.XOR3(result, op3);
+		for (int i = 0; i < result.size(); i++) {
+			System.out.print(result.get(i));
+		}
+		assertEquals(4, sn.tern2deci(result));
 	}
 
 }

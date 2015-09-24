@@ -39,22 +39,18 @@ public class SingleNumberII {
     public ArrayList<Integer> XOR3(ArrayList<Integer> op1, ArrayList<Integer> op2) {
     	ArrayList<Integer> result = new ArrayList<Integer>();
     	for (int i = 0; i < op1.size() && i < op2.size(); i++) {
-    		if (op1.get(1) + op2.get(2) == 3) {
-    			result.add(0);
-    		} else {
-    			result.add(op1.get(1) + op2.get(2));
-    		}
+    			result.add((op1.get(i) + op2.get(i)) % 3);
     	}
-    	int diff = 0; ArrayList<Integer> op = op1; int start = op2.size() + 1;
+    	int diff = 0; ArrayList<Integer> op = op1; int start = op2.size();
     	if (op1.size() > op2.size()) {
     		diff = op1.size() - op2.size();
     	} else {
     		diff = op2.size() - op1.size();
     		op = op2;
-    		start = op1.size() + 1;
+    		start = op1.size();
     	}
     	
-    	for (int j = start; j < diff ; j++) {
+    	for (int j = start; j < start + diff ; j++) {
 			result.add(op.get(j));
 		}
     	
