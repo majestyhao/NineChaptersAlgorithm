@@ -19,7 +19,7 @@ public class MinimumSubarray {
     		minSum = Math.min(minSum, sum);
     	}
     	
-    	return max;
+    	return -1 * max;
     }
 
 }
