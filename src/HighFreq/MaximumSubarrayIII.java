@@ -30,14 +30,17 @@ public class MaximumSubarrayIII {
 				// 从x + 2 到i时最大值
 				int globalMax = Integer.MIN_VALUE, 
 						// 以x为末尾, i为头的max sub array是多大
-						localMax = Integer.MIN_VALUE,
+						//localMax = 0,
+						minSum = 0, sum = 0,
 							// x在不同位置时, 整体最大值
 							max = Integer.MIN_VALUE;
 				// 一定得倒着来, 这样才让localMax的范围是[x + 1 : i]
 				for (int x = i - 1; x >= j - 1; x--) {
-					localMax = Math.max(nums.get(x + 1 - 1), localMax + nums.get(x + 1 - 1));
-					// nums.get(i));
-					globalMax = Math.max(globalMax, localMax);
+					//localMax = Math.max(nums.get(x + 1 - 1), localMax + nums.get(x + 1 - 1));
+					sum += nums.get(x);
+					globalMax = Math.max(globalMax, sum - minSum);
+					minSum = Math.min(minSum, sum);
+					//globalMax = Math.max(globalMax, localMax);
 					max = Math.max(max, f[x][j - 1] + globalMax);
 				}
 				f[i][j] = max;
