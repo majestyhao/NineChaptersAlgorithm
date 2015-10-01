@@ -7,7 +7,8 @@ public class InterleavingPositiveandNegativeNumbers {
      */
 	public void rerange(int[] nums) {
 		int startPos = partition(0, nums);
-		for (int i = 1, j = startPos; i < startPos;) {
+		System.out.println(startPos);
+		for (int i = 1, j = startPos; i <= startPos;) {
 			swap(i, j, nums);
 			i += 2;
 			j++;
@@ -16,11 +17,11 @@ public class InterleavingPositiveandNegativeNumbers {
 	
 	private int partition(int target, int[] nums) {
 		int i = 0, j = nums.length - 1;
-		while (i <= j) {
+		while (i <= j) {                                                                                       
 			while (i <= j && nums[i] < target) {
 				i++;
 			}
-			while (i <= j && nums[i] >= target) {
+			while (i <= j && nums[j] >= target) {
 				j--;
 			}
 			if (i <= j) {
