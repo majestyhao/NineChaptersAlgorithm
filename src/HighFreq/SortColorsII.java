@@ -9,7 +9,7 @@ public class SortColorsII {
     public void sortColors2(int[] colors, int k) {
     	int prevPos = 0;
     	for (int i = 2; i <= k; i++) {
-    		prevPos = partition(prevPos, colors.length, colors, i);
+    		prevPos = partition(prevPos, colors.length - 1, colors, i);
     	}
     }
     
