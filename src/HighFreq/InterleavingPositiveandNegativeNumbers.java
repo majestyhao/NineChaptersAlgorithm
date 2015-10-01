@@ -8,10 +8,19 @@ public class InterleavingPositiveandNegativeNumbers {
 	public void rerange(int[] nums) {
 		int startPos = partition(0, nums);
 		//System.out.println(startPos);
-		for (int i = 1, j = startPos; i < nums.length && j < nums.length;) {
-			swap(i, j, nums);
-			i += 2;
-			j++;
+		// the num of pos > the num of neg
+		if (nums.length - startPos > startPos - 1) {
+			for (int i = 0, j = startPos; i < nums.length && j < nums.length;) {
+				swap(i, j, nums);
+				i += 2;
+				j++;
+			}
+		} else {
+			for (int i = 1, j = startPos; i < nums.length && j < nums.length;) {
+				swap(i, j, nums);
+				i += 2;
+				j++;
+			}
 		}
 	}
 	
