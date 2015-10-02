@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/BinarySearch/FindMedianSortedArrays.java=UTF-8
+encoding//src/BinarySearch/FindMedianSortedArraysDoAgain.java=UTF-8
 encoding//src/DataStructure/MaxTree.java=UTF-8
 encoding//src/DynamicProgrammingI/LongestIIncreasingSubsequence.java=UTF-8
 encoding//src/DynamicProgrammingI/PalindromePartitioningII.java=UTF-8
@@ -11,8 +13,6 @@ encoding//src/DynamicProgrammingII/EditDistance.java=UTF-8
 encoding//src/DynamicProgrammingII/InterleavingString.java=UTF-8
 encoding//src/DynamicProgrammingII/LongestCommonSubsequence.java=UTF-8
 encoding//src/DynamicProgrammingII/LongestCommonSubstring.java=UTF-8
-encoding//src/FindMedianSortedArrays.java=UTF-8
-encoding//src/FindMedianSortedArraysDoAgain.java=UTF-8
 encoding//src/HighFreq/MaximumSubarray.java=UTF-8
 encoding//src/HighFreq/MaximumSubarrayDifference.java=UTF-8
 encoding//src/HighFreq/MaximumSubarrayIII.java=UTF-8
