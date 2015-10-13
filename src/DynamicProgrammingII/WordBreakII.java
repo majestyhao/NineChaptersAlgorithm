@@ -12,9 +12,8 @@ public class WordBreakII {
         List<String> list = new ArrayList<String>();
         List<List<String>> res = new ArrayList<List<String>>();
         int n = s.length();
-        boolean[] flag = new boolean[n];
-        ArrayList<String>[] dp = new ArrayList[n];
-        wordBreakHelper(0, list, res, s, wordDict, flag, dp);
+        int[] dp = new int[n];
+        wordBreakHelper(0, list, res, s, wordDict, dp);
 
         List<String> result = new ArrayList<String>();
         for (int i = 0; i < res.size(); i++) {
@@ -30,28 +29,28 @@ public class WordBreakII {
     }
 
     private void wordBreakHelper(int pos, List<String> list, List<List<String>> res,
-                                 String s, Set<String> wordDict, boolean[] flag, List<String>[] dp) {
-        if (pos < s.length() && flag[pos]) {
-            list.addAll(dp[pos]);
-            res.add(new ArrayList<String>(list));
-            return;
-        }
-
+                                 String s, Set<String> wordDict, int[] dp) {
         if (pos == s.length()) {
             res.add(new ArrayList<String>(list));
             //System.out.println();
             return;
         }
 
+        if (dp[pos] == 1) {
+            return;
+        }
+
         for (int i = pos; i < s.length(); i++) {
             String subStr = s.substring(pos, i + 1);
             if (wordDict.contains(subStr)) {
+                int beforeSize = res.size();
                 list.add(subStr);
-                wordBreakHelper(i + 1, list, res, s, wordDict, flag, dp);
+                wordBreakHelper(i + 1, list, res, s, wordDict, dp);
                 list.remove(list.size() - 1);
+                if (res.size() == beforeSize) {
+                    dp[i + 1] = 1;
+                }
             }
         }
-        dp[pos] = new ArrayList<String>(list);
-        flag[pos] = true;
     }
 }
