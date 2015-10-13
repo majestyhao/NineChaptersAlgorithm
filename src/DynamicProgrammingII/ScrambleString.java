@@ -26,7 +26,7 @@ public class ScrambleString {
         }
 
         // loop
-        for (int len = 1; len <= n; len++) {
+        for (int len = 2; len <= n; len++) {
             for (int i = 0; i < n - len + 1; i++) {
                 for (int j = 0; j < n - len + 1; j++) {
                     for (int k = 1; k < len; k++) {
