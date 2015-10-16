@@ -6,34 +6,19 @@ public class RemoveNthNodeFromEndofList {
      * @param n: An integer.
      * @return: The head of linked list.
      */
-    ListNode removeNthFromEnd(ListNode head, int n) {
-    	if (head == null || n < 0) {
-    		return null;
-    	} 
-    	
-    	ListNode dummy = head;
-    	
-    	int len = getLength(head);
-    	
-    	if (len - n == 0) {
-    		return head.next;
-    	}
-    	for (int i = 0; i < len - n - 1; i++) {
-    		head = head.next;
-    	}
-    	head.next = head.next.next;
-    	
-    	return dummy;
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode first = head, second = head;
+        for (int i = 0; i < n; i++) {
+            first = first.next;
+        }
+        if (first == null) {
+            return head.next;
+        }
+        while (first.next != null) {
+            first = first.next;
+            second = second.next;
+        }
+        second.next = second.next.next;
+        return head;
     }
-    
-    private int getLength(ListNode head) {
-    	int count = 0;
-    	while (head != null) {
-    		head = head.next;
-    		count++;
-    	}
-    	
-    	return count;
-    }
-
 }
