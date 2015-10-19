@@ -1,3 +1,5 @@
+package GraphandSearch;
+
 import java.util.ArrayList;
 
 public class PermuteSolution {

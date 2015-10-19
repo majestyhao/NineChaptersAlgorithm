@@ -1,6 +1,8 @@
-import static org.junit.Assert.*;
+package GraphandSearch;
+
 import java.util.ArrayList;
 
+import GraphandSearch.SubsetsSolution;
 import org.junit.Before;
 import org.junit.Test;
 

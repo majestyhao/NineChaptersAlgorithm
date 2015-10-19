@@ -50,7 +50,7 @@ public class CourseScheduleII {
         for (int i = 0; i < topSort.size(); i++) {
             res[i] = topSort.get(i);
         }
-        
+
         return res;
     }
 

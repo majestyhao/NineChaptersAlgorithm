@@ -1,6 +1,7 @@
 package GraphandSearch;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NQueensII {
 	/**
@@ -8,52 +9,57 @@ public class NQueensII {
      * @param n: The number of queens.
      * @return: The total number of distinct solutions.
      */
-    public int totalNQueens(int n) {
-    	if (n == 1) {
-    		return 1;
-    	} else if (n <= 3) {
-    		return 0;
-    	}
-    	int[] result = new int[1];
-    	result[0] = 0;
-    	ArrayList<Integer> list = new ArrayList<Integer>();
-    	totalNQueensHelper(list, -1, n, result);
-    	return result[0];
-    }
-    
-    private int xy21d(int x, int y, int n) {
-    	return x * n + y; 
-    }
-    
-    private void totalNQueensHelper(ArrayList<Integer> list, int x, int n, int[] result) {
-    	for (int y = 0; y < n; y++) {
-    		boolean flag = false;
-    		for (int k = 0; k < list.size(); k++) {
-        		int lx = list.get(k) / n;
-        		int ly = list.get(k) % n;
-        		if (y == ly) {
-        			flag = true;
-        			break;
-        		} else if (x - y == lx - ly) {
-        			flag = true;
-        			break;
-        		} else if (x + y == lx + ly) {
-        			flag = true;
-        			break;
-        		}
-        	}	
-    		if (flag) {
-    			continue;
-    		}
-    		if (x == n - 1) {
-    			result[0]++;
-    			return;
-    		}
-    		int index = xy21d(x, y, n); 
-    		list.add(index);
-    		totalNQueensHelper(list, x + 1, n, result);
-    		list.remove(list.size() - 1);
-    	}
-    }
+	private int res = 0;
+
+	public int totalNQueens(int n) {
+		if (n == 1) {
+			return 1;
+		}
+
+		List<Integer> list = new ArrayList<Integer>();
+		helper(0, list, n);
+		return res;
+	}
+
+	private void helper(int level, List<Integer> list, int n) {
+		if (level == n) {
+			res++;
+			return;
+		}
+
+		for (int y = 0; y < n; y++) {
+			if (!isValid(level, y, list, n)) {
+				continue;
+			}
+
+			list.add(twoDToOneD(level, y, n));
+			helper(level + 1, list, n);
+			list.remove(list.size() - 1);
+		}
+	}
+
+	private boolean isValid(int x, int y, List<Integer> list, int n) {
+		for (int i = 0; i < list.size(); i++) {
+			int[] xy = oneDToTwoD(list.get(i), n);
+			if (y == xy[1] || x + y == xy[0] + xy[1]
+					|| x - y == xy[0] - xy[1]) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private int twoDToOneD(int x, int y, int n) {
+		return x * n + y;
+	}
+
+	private int[] oneDToTwoD(int num, int n) {
+		int[] res = new int[2];
+		res[0] = num / n;
+		res[1] = num % n;
+
+		return res;
+	}
 
 }
