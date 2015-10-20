@@ -10,40 +10,29 @@ public class LargestRectangleinHistogram {
      * @return: The area of largest rectangle in the histogram
      */
     public int largestRectangleArea(int[] height) {
-    	if (height.length == 0) {
-    		return 0;
-    	}
-    	    	
-    	int[] newHeight = new int[height.length + 2];
-    	newHeight[0] = -2;
-    	for (int i = 0; i < height.length; i++) {
-    		newHeight[i + 1] = height[i];
-    	}
-    	newHeight[newHeight.length - 1] = -1;
-    	Stack<Integer> stack = new Stack<Integer>();
-    	stack.push(0);
-    	ArrayList<Integer> result = new ArrayList<Integer>();
-    	for (int i = 1; i < newHeight.length; i++) {
-    		while (newHeight[i] < newHeight[stack.peek()]) {
-    			int tmpHeight = newHeight[stack.pop()];
-    			//System.out.println(tmpHeight);
-    			//System.out.println(stack.peek());
-    			//System.out.println((i - stack.peek() + 1) );
-    			result.add((i - stack.peek() - 1) * tmpHeight); 
-    			//System.out.println(result);
-    		}
-    		stack.push(i);
-    		//System.out.println(stack);
-    	}
-    	
-    	int max = 0;
-    	for (int i = 0; i < result.size(); i++) {
-    		if (result.get(i) > max) {
-    			max = result.get(i);
-    		}
-    	}
-    	
-    	return max;
-    }
+		if (height.length == 0) {
+			return 0;
+		}
+		Stack<Integer> stack = new Stack<Integer>();
+		int[] tmp = new int[height.length + 1];
+		for (int i = 0; i < height.length; i++) {
+			tmp[i] = height[i];
+		}
+		tmp[height.length] = -1;
+		height = tmp;
+
+		int res = 0;
+		stack.push(0);
+		for (int i = 1; i < height.length; i++) {
+			while (!stack.isEmpty() && height[i] < height[stack.peek()]){
+				int index = stack.pop();
+				int size = (i - index) * height[index];
+				res = Math.max(res, size);
+			}
+			stack.push(i);
+		}
+
+		return res;
+	}
 
 }

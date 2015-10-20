@@ -1,4 +1,4 @@
-package DataStructure;
+package DataStructure.Stack;
 
 import java.util.Stack;
 import BinaryTreeAndDivideConquer.TreeNode;
