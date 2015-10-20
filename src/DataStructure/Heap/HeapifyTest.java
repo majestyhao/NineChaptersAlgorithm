@@ -1,6 +1,4 @@
-package DataStructure;
-
-import static org.junit.Assert.*;
+package DataStructure.Heap;
 
 import org.junit.Before;
 import org.junit.Test;

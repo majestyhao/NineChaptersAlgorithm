@@ -1,4 +1,4 @@
-package DataStructure;
+package DataStructure.Heap;
 
 public class HeapifyON {
 	public void heapify(int[] A) {
