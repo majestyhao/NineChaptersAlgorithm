@@ -1,7 +1,8 @@
-package DataStructure.Stack;
+package DataStructure.Hash;
 
 import static org.junit.Assert.*;
 
+import DataStructure.Hash.LRUCache;
 import org.junit.Before;
 import org.junit.Test;
 
