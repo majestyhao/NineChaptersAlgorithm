@@ -6,57 +6,37 @@ import java.util.Stack;
  * Created by hao on 15-10-20.
  */
 public class SimplifyPath {
+    /**
+     * @param path the original path
+     * @return the simplified path
+     */
     public String simplifyPath(String path) {
         if (path.length() == 0) {
             return null;
         }
-        Stack<Character> stack = new Stack<Character>();
-        char[] res = null;
-        stack.push('/');
-        for (int i = 1; i < path.length(); i++) {
-            if (path.charAt(i) == '/') {
-                if (stack.peek() == '/') {
-                    continue;
+
+        String[] parts = path.split("/");
+        Stack<String> stack = new Stack<String>();
+        for (String s : parts) {
+            if (s.equals("..")) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
                 }
-                res = new char[stack.size()];
-                int j = stack.size() - 1;
-                while (!stack.isEmpty()) {
-                    res[j] = stack.pop();
-                    j--;
-                }
+            } else if (s.length() == 0 || s.equals(".")) {
+                continue;
+            } else {
+                stack.push(s);
             }
-            stack.push(path.charAt(i));
         }
 
-        if (!stack.isEmpty()) {
-            res = new char[stack.size()];
-            int j = stack.size() - 1;
-            while (!stack.isEmpty()) {
-                res[j] = stack.pop();
-                j--;
-            }
-        }
-        if (res == null) {
+        StringBuilder str = new StringBuilder();
+        if (stack.isEmpty()) {
             return "/";
         }
-
-        int start = 0;
-        for (int i = 0; i < res.length; i++) {
-            if (res[i] != '.') {
-                break;
-            } else {
-                start++;
-            }
+        while (!stack.isEmpty()) {
+            str.append("/").append(stack.remove(0));
         }
-        StringBuilder sb = new StringBuilder();
-        for (int i = start; i < res.length; i++) {
-            sb.append(res[i]);
-        }
-        return sb.toString();
-    }
 
-    public static void main(String[] args) {
-        SimplifyPath sp = new SimplifyPath();
-        System.out.print(sp.simplifyPath("/..."));
+        return str.toString();
     }
 }
