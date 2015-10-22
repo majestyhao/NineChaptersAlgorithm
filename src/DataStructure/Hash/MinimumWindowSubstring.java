@@ -52,7 +52,7 @@ public class MinimumWindowSubstring {
                 }
             }
         }
-        
+
         return res;
     }
 
