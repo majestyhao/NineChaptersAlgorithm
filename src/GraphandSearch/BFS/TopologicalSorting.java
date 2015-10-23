@@ -1,4 +1,6 @@
-package GraphandSearch;
+package GraphandSearch.BFS;
+
+import GraphandSearch.DirectedGraphNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
