@@ -1,6 +1,4 @@
-package GraphandSearch;
-
-import static org.junit.Assert.*;
+package GraphandSearch.DFS;
 
 import org.junit.Before;
 import org.junit.Test;

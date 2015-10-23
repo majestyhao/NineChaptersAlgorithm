@@ -1,4 +1,4 @@
-package GraphandSearch;
+package GraphandSearch.DFS;
 
 import java.util.List;
 import java.util.ArrayList;

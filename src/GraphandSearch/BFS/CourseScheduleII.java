@@ -1,4 +1,4 @@
-package GraphandSearch;
+package GraphandSearch.BFS;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

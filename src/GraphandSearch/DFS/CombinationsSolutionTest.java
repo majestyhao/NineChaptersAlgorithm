@@ -1,5 +1,6 @@
-package GraphandSearch;
+package GraphandSearch.DFS;
 
+import GraphandSearch.DFS.CombinationsSolution;
 import org.junit.Before;
 import org.junit.Test;
 

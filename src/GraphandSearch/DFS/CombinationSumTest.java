@@ -1,4 +1,4 @@
-package GraphandSearch;
+package GraphandSearch.DFS;
 
 import org.junit.Before;
 import org.junit.Test;

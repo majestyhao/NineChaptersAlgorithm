@@ -1,8 +1,7 @@
-package GraphandSearch;
+package GraphandSearch.DFS;
 
 import java.util.ArrayList;
 
-import GraphandSearch.SubsetsSolution;
 import org.junit.Before;
 import org.junit.Test;
 
