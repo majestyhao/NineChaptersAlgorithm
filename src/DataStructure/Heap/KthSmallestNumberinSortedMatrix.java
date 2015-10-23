@@ -12,18 +12,31 @@ public class KthSmallestNumberinSortedMatrix {
     public int kthSmallest(int[][] matrix, int k) {
         int m = matrix.length;
         int n = matrix[0].length;
-        int[] mat = new int[m * n];
+
+        int sum = 0, level = 0;
+        while (k > sum + m + n - 1) {
+            sum += m + n - 1;
+            m--;
+            n--;
+            level++;
+        }
+
+        int[] mat = new int[m + n - 1];
         int count = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                mat[count] = matrix[i][j];
-                count++;
-            }
+        m = matrix.length;
+        n = matrix[0].length;
+        for (int i = level; i < m; i++) {
+            mat[count] = matrix[i][level];
+            count++;
+        }
+        for (int i = level + 1; i < n; i++) {
+            mat[count] = matrix[level][i];
+            count++;
         }
 
         heapify(mat);
         int res = 0;
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < k - sum; i++) {
             res = pull(mat);
         }
 
@@ -69,10 +82,8 @@ public class KthSmallestNumberinSortedMatrix {
 
     public static void main(String[] args) {
         KthSmallestNumberinSortedMatrix ks = new KthSmallestNumberinSortedMatrix();
-        int[][] input = {
-                {1, 5, 7},
-                {3, 7, 8},
-                {4, 8, 9},};
+        //int[][] input = {{1,2,3,4,5},{2,3,4,5,6}, {3,4,5,6,7},{4,5,6,7,8}};
+        int[][] input = {{1,5,7},{3,7,8},{4,8,9}};
         System.out.print(ks.kthSmallest(input, 4));
     }
 }
