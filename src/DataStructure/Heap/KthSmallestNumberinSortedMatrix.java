@@ -1,5 +1,9 @@
 package DataStructure.Heap;
 
+
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 /**
  * Created by hao on 15-10-22.
  */
@@ -9,75 +13,40 @@ public class KthSmallestNumberinSortedMatrix {
      * @param k: an integer
      * @return: the kth smallest number in the matrix
      */
+    public class Point {
+        public int x, y, val;
+        Point(int x, int y, int val) {
+            this.x = x;
+            this.y = y;
+            this.val = val;
+        }
+    }
+
+    public class PointComparator implements Comparator<Point> {
+        @Override
+        public int compare(Point a, Point b) {
+            return a.val - b.val;
+        }
+    }
+
     public int kthSmallest(int[][] matrix, int k) {
-        int m = matrix.length;
-        int n = matrix[0].length;
-
-        int sum = 0, level = 0;
-        while (k > sum + m + n - 1) {
-            sum += m + n - 1;
-            m--;
-            n--;
-            level++;
-        }
-
-        int[] mat = new int[m + n - 1];
-        int count = 0;
-        m = matrix.length;
-        n = matrix[0].length;
-        for (int i = level; i < m; i++) {
-            mat[count] = matrix[i][level];
-            count++;
-        }
-        for (int i = level + 1; i < n; i++) {
-            mat[count] = matrix[level][i];
-            count++;
-        }
-
-        heapify(mat);
-        int res = 0;
-        for (int i = 0; i < k - sum; i++) {
-            res = pull(mat);
-        }
-
-        return res;
+       return horizontal(matrix, k);
     }
 
-    private void heapify(int[] mat) {
-        heapSize = mat.length;
-        for (int i = mat.length / 2; i >= 0; i--) {
-            siftDown(mat, i);
+    private int horizontal(int[][] matrix, int k) {
+        PriorityQueue<Point> heap = new PriorityQueue<>(k, new PointComparator());
+        for (int i = 0; i < Math.min(k, matrix.length); i++) {
+            heap.offer(new Point(i, 0, matrix[i][0]));
         }
-    }
 
-    private int heapSize;
-
-    private void siftDown(int[] nums, int i) {
-        while (i < heapSize) {
-            int smallest = i;
-            if (i * 2 + 1 < heapSize && nums[i * 2 + 1] < nums[smallest]) {
-                smallest = i * 2 + 1;
+        for (int i = 0; i < k - 1; i++) {
+            Point curr = heap.poll();
+            if (curr.y + 1 < matrix[0].length) {
+                heap.offer(new Point(curr.x, curr.y + 1, matrix[curr.x][curr.y + 1]));
             }
-            if (i * 2 + 2 < heapSize && nums[i * 2 + 2] < nums[smallest]) {
-                smallest = i * 2 + 2;
-            }
-            if (smallest == i) {
-                break;
-            }
-            int tmp = nums[smallest];
-            nums[smallest] = nums[i];
-            nums[i] = tmp;
-            i = smallest;
         }
-    }
 
-    private int pull(int[] nums) {
-        int res = nums[0];
-        nums[0] = nums[heapSize - 1];
-        heapSize--;
-        siftDown(nums, 0);
-
-        return res;
+        return heap.peek().val;
     }
 
     public static void main(String[] args) {

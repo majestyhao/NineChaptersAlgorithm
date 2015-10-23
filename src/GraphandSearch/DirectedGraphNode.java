@@ -3,8 +3,8 @@ package GraphandSearch;
 import java.util.ArrayList;
 
 public class DirectedGraphNode {
-	int label;
-	ArrayList<DirectedGraphNode> neighbors;
+	public int label;
+	public ArrayList<DirectedGraphNode> neighbors;
 
 	DirectedGraphNode(int x) {
 		label = x;
