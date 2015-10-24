@@ -8,11 +8,11 @@ import java.util.Map;
  */
 
 public class Trie {
-    class TrieNode {
+    public class TrieNode {
         // Initialize your data structure here.
-        char c;
-        boolean isWord;
-        Map<Character, TrieNode> children = new HashMap<>();
+        public char c;
+        public boolean isWord;
+        public Map<Character, TrieNode> children = new HashMap<>();
         public TrieNode(char c) {
             this.c = c;
         }
@@ -22,7 +22,7 @@ public class Trie {
         }
     }
 
-    private TrieNode root;
+    public TrieNode root;
 
     public Trie() {
         root = new TrieNode();

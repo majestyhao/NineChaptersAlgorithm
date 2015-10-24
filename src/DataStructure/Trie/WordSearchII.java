@@ -23,7 +23,7 @@ public class WordSearchII {
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                dfs(i, j, list, board, res, trie, m, n);
+                dfs(i, j, list, board, res, trie.root, m, n);
             }
         }
 
@@ -31,13 +31,15 @@ public class WordSearchII {
     }
 
     private void dfs(int x, int y, List<Character> list, char[][] board,
-                     ArrayList<String> res, Trie trie, int m, int n) {
-        StringBuilder sb = new StringBuilder();
-        for (Character c : list) {
-            sb.append(c);
-        }
-        if (!list.isEmpty() && trie.search(sb.toString()) && !res.contains(sb.toString()) ) {
-            res.add(sb.toString());
+                     ArrayList<String> res, Trie.TrieNode node, int m, int n) {
+        if (!list.isEmpty() && node.isWord) {
+            StringBuilder sb = new StringBuilder();
+            for (Character c : list) {
+                sb.append(c);
+            }
+            if (!res.contains(sb.toString())) {
+                res.add(sb.toString());
+            }
         }
         int[] dx = {1, -1, 0, 0};
         int[] dy = {0, 0, 1, -1};
@@ -47,13 +49,11 @@ public class WordSearchII {
             int newY = y + dy[i];
             if (newX < m && newX >= 0 && newY < n
                     && newY >= 0 ) {
-                StringBuilder sb2 = new StringBuilder(sb);
-                sb2.append(board[newX][newY]);
-                if (trie.startsWith(sb2.toString())){
-                    char cur = board[newX][newY];
+                char cur = board[newX][newY];
+                if (node.children.containsKey(cur)){
                     board[newX][newY] = 0;
                     list.add(cur);
-                    dfs(newX, newY, list, board, res, trie, m, n);
+                    dfs(newX, newY, list, board, res, node.children.get(cur), m, n);
                     list.remove(list.size() - 1);
                     board[newX][newY] = cur;
                 }
