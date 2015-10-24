@@ -6,21 +6,22 @@ import java.util.Map;
 /**
  * Created by hao on 15-10-23.
  */
-class TrieNode {
-    // Initialize your data structure here.
-    char c;
-    boolean isWord;
-    Map<Character, TrieNode> children = new HashMap<>();
-    public TrieNode(char c) {
-        this.c = c;
-    }
-
-    public TrieNode() {
-
-    }
-}
 
 public class Trie {
+    class TrieNode {
+        // Initialize your data structure here.
+        char c;
+        boolean isWord;
+        Map<Character, TrieNode> children = new HashMap<>();
+        public TrieNode(char c) {
+            this.c = c;
+        }
+
+        public TrieNode() {
+
+        }
+    }
+
     private TrieNode root;
 
     public Trie() {
