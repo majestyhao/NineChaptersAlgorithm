@@ -10,10 +10,6 @@ public class IntervalMinimumNumber {
      *@param A, queries: Given an integer array and an query list
      *@return: The result list
      */
-    /**
-     *@param A, queries: Given an integer array and an query list
-     *@return: The result list
-     */
     public ArrayList<Integer> intervalMinNumber(int[] nums, ArrayList<Interval> queries) {
         SegTree segTree = new SegTree();
         SegTreeNode root = segTree.buildTree(0, nums.length - 1, nums);
