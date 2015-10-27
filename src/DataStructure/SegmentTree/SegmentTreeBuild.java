@@ -12,7 +12,7 @@ public class SegmentTreeBuild {
         if (start > end) {
             return null;
         }
-        SegmentTreeNode root = new SegmentTreeNode(start, end);
+        SegmentTreeNode root = new SegmentTreeNode(start, end, 0);
         if (end != start) {
             int mid = start + (end - start) / 2;
             root.left = build(start, mid);
