@@ -12,7 +12,7 @@ public class IntervalSum {
      */
     public ArrayList<Long> intervalSum(int[] nums, ArrayList<Interval> queries) {
         root = build(0, nums.length - 1, nums);
-        ArrayList<Long> res = new ArrayList<>();
+        ArrayList<Long> res = new ArrayList<Long>();
         for (Interval que : queries) {
             res.add(query(que.start, que.end));
         }
