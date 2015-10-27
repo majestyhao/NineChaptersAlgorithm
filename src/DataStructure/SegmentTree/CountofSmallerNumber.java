@@ -27,23 +27,32 @@ public class CountofSmallerNumber {
     }
 
     private SegTreeNode build(int start, int end) {
-        if (end < start} {
+        if (end < start) {
             return null;
         }
 
         SegTreeNode root = new SegTreeNode(start, end, 0);
         if (start != end) {
             int mid = start + (end - start) / 2;
-            root.left = (start, mid)
-        root.right = (mid + 1, end)
-    } else {
+            root.left = build(start, mid);
+            root.right = build(mid + 1, end);
+        } else {
             root.count = 0;
         }
+
+        return root;
     }
 
-    private void modify(SegTreeNode root, int index, value) {
+    private void modify(SegTreeNode root, int index, int value) {
         if (root.start == index && root.end == index) {
+            root.count = value;
+        }
 
+        int mid = root.start + (root.end - root.start) / 2;
+        if (mid < index) {
+            modify(root.right, index, value);
+        } else if (index < mid) {
+            modify(root.left, index, value);
         }
     }
 }

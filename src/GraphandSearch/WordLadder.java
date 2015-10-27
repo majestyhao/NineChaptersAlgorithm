@@ -13,77 +13,54 @@ public class WordLadder {
      * @param dict, a set of string
      * @return an integer
      */
-   public int ladderLength(String start, String end, Set<String> dict) {
-	   Queue<String> queue = new LinkedList<String>();
-	   queue.add(start);
-	   HashSet<String> met = new HashSet<String>();
-	   met.add(start);
-	   /*HashMap<String, Integer> ladder = new HashMap<String, Integer>();
-	   ladder.put(start, 1);*/
-	   
-	   int ladder = 1;
-	   while (!queue.isEmpty()) {
-		   ladder++;
-		   /*
-		   String str = queue.poll();
-		   met.put(str, 0);
-		   //for (String element : dict) {
-		   for (String element : getNext(str, dict)) {
-			   if (!met.containsKey(element) && dist(str, element)) {
-				   queue.offer(element);
-				   if (element.equals(end)) {
-					   return ladder.get(str) + 1;
+	public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
+		   Queue<String> queue = new LinkedList<String>();
+		   Set<String> visited = new HashSet<String>();
+		   queue.add(beginWord);
+		   int count = 1;
+		   while (!queue.isEmpty()) {
+			   int len = queue.size();
+			   count++;
+			   for (int i = 0; i < len; i++) {
+				   String str = queue.remove();
+				   if (visited.contains(str)) {
+					   continue;
 				   }
-				   if (!ladder.containsKey(element)) {
-					   ladder.put(element, ladder.get(str) + 1);		
+				   visited.add(str);
+				   for (int j = 0; j < str.length(); j++) {
+					   if (addValid(str, j, queue, wordList, endWord, visited)) {
+						   return count;
+					   }
 				   }
 			   }
 		   }
+
+		   return 0;
 	   }
-	   
-	   return ladder.get(end);*/
-		   int size = queue.size();
-		   for (int i = 0; i < size; i++) {
-			  String str = queue.poll();
-			  for (String element : getNext(str, dict)) {
-				  if (!met.contains(element)) {
-					  if (element.equals(end)) {
-						  return ladder;
-					  }
-					  queue.offer(element);
-					  met.add(element);
-				  }
-			  }
-		   }
-	   }
-	   
-	   return 0;
-   }
-   /*
-   private boolean dist(String str1, String str2) {
-	   int count = 0;
-	   for (int i = 0; i < str1.length(); i++) {
-			   if (str1.charAt(i) != str2.charAt(i)) {
-				   count++;
-			   }
-	   }
-	   
-	   return count == 1;
-   }
-   */
-   private ArrayList<String> getNext(String str, Set<String> dict) {
-	   ArrayList<String> result = new ArrayList<String>();
-	   for (int i = 0; i < str.length(); i++) {
-		   for (char j = 'a'; j <= 'z'; j++) {
-			   StringBuilder tmp = new StringBuilder(str);
-			   tmp.setCharAt(i, j); 
-			   if (dict.contains(tmp.toString())) {
-				   result.add(tmp.toString());
-			   }
-		   }
-	   }
-	   
-	   return result;
-   }
+
+	private String replace(String str, int pos, char c) {
+		char[] chars = str.toCharArray();
+		chars[pos] = c;
+		return new String(chars);
+	}
+
+	private boolean addValid(String str, int pos, Queue<String> queue,
+							 Set<String> wordList, String endWord, Set<String> visited) {
+		for (char i = 'a'; i <= 'z'; i++) {
+			if (str.charAt(pos) == i) {
+				continue;
+			}
+			//String newStr = str.substring(0, pos) + i + str.substring(pos + 1, str.length());
+			String newStr = replace(str, pos, i);
+			if (newStr.equals(endWord)) {
+				return true;
+			}
+			if (wordList.contains(newStr)) {
+				queue.add(newStr);
+			}
+		}
+
+		return false;
+	}
 
 }
