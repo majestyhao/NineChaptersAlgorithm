@@ -27,12 +27,8 @@ public class KthLargestElement {
 
     private int partition(int left, int right, ArrayList<Integer> nums) {
         int mid = left + (right - left) / 2;
-        //int piv = nums.get(mid);
-        //int piv = nums.get(left);
         int pivot = left;
         swap(left, mid, nums);
-        //int orgL = left;
-        //left++;
         while (left <= right) {
             while (left <= right && nums.get(left) <= nums.get(pivot)) {
                 left++;
@@ -42,13 +38,9 @@ public class KthLargestElement {
             }
             if (left <= right) {
                 swap(left, right, nums);
-                //left++;
-                //right--;
             }
         }
 
-        //swap(left - 1, orgL, nums);
-        //swap(left, right, nums);
         swap(pivot, right, nums);
         return right;
     }
