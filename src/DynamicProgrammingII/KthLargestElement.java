@@ -30,19 +30,20 @@ public class KthLargestElement {
         int pivot = left;
         swap(left, mid, nums);
         while (left <= right) {
-            while (left <= right && nums.get(left) <= nums.get(pivot)) {
+            left++;
+            while (left <= right && nums.get(left) < nums.get(pivot)) {
                 left++;
             }
-            while (left <= right && nums.get(right) >= nums.get(pivot)) {
+            while (left <= right && nums.get(right) > nums.get(pivot)) {
                 right--;
             }
             if (left <= right) {
                 swap(left, right, nums);
             }
         }
-
-        swap(pivot, right, nums);
-        return right;
+        // left存的是第一个大于nums[pivot]的位置
+        swap(pivot, left - 1, nums);
+        return left - 1;
     }
 
     private void swap(int i, int j, ArrayList<Integer> nums) {
