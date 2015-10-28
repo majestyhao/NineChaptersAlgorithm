@@ -1,4 +1,4 @@
-package DynamicProgrammingII;
+package HighFreq.TwoPointers.QuickSelect;
 
 import java.util.ArrayList;
 
