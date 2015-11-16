@@ -1,4 +1,4 @@
-package HighFreq;
+package HighFreq.TwoPointers.QuickSelect;
 
 public class SortColorsII {
 	/**

@@ -1,6 +1,4 @@
-package HighFreq;
-
-import static org.junit.Assert.*;
+package HighFreq.TwoPointers.TwoSum;
 
 import org.junit.Before;
 import org.junit.Test;

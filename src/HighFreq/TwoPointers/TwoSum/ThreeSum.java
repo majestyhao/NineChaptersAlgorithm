@@ -1,4 +1,4 @@
-package HighFreq;
+package HighFreq.TwoPointers.TwoSum;
 
 import java.util.ArrayList;
 import java.util.Arrays;

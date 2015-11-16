@@ -1,4 +1,4 @@
-package HighFreq;
+package HighFreq.SubArraySum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
