@@ -4,11 +4,7 @@ package BinarySearch;
 public class FindFirstBadVersion {
 	public class versionControl {
 		public boolean isBadVersion(int k) {
-			if (k <= 3) {
-				return false;
-			} else {
-				return true;
-			}
+			return k > 3;
 		}
 	}
 	

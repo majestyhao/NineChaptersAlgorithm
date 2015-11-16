@@ -10,8 +10,8 @@ public class CopyListwithRandomPointer {
 		RandomListNode(int x) {
 			this.label = x;
 		}
-	};
-	
+	}
+
 	/**
      * @param head: The head of linked list with a random pointer.
      * @return: A new head of a deep copy of the list.

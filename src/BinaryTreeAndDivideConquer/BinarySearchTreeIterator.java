@@ -33,11 +33,7 @@ public class BinarySearchTreeIterator {
 
     //@return: True if there has next node, or false
     public boolean hasNext() {
-    	if (result.isEmpty()) {
-    		return false;
-    	} else {
-    		return true;
-    	}
+		return !result.isEmpty();
     }
     
     //@return: return next node

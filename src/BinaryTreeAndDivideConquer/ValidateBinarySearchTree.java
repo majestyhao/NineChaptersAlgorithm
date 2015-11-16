@@ -38,13 +38,9 @@ public class ValidateBinarySearchTree {
     	
     	ResultType left = isValidBSTHelper(root.left);
     	ResultType right = isValidBSTHelper(root.right);
-    	
-    	if ((root.left == null || left.max < root.val) 
-    			&& (root.right == null || right.min > root.val)) {
-    		return true;
-    	} else {
-    		return false;
-    	}
+
+		return (root.left == null || left.max < root.val)
+				&& (root.right == null || right.min > root.val);
     }
 
 }
