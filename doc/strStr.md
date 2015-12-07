@@ -20,4 +20,6 @@ Not necessary. When you meet this problem in a real interview, the interviewer m
 
 ## Thoughts
 KMP算法利用了pattern match思想，通过维护next数组达到减少回退次数的目的。
-不过本题主要是考察coding style和bug free. 用直观的
+不过本题主要是考察coding style和bug free. 用直观的两次循环即可
+
+## Code
