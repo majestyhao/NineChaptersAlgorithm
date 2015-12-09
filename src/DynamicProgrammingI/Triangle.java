@@ -4,43 +4,36 @@ import java.util.ArrayList;
 
 public class Triangle {
 	/**
-     * @param triangle: a list of lists of integers.
-     * @return: An integer, minimum path sum.
-     */
-    public int minimumTotal(ArrayList<ArrayList<Integer>> triangle) {
-    	if (triangle == null) {
-    		return 0;
-    	}
-    	
-    	int[][] f = new int[triangle.size()][];
-    	
-    	// init 
-    	f[0] = new int[1];
-    	f[0][0] = triangle.get(0).get(0);
-    	
-    	// loop
-    	for (int i = 1; i < triangle.size(); i++) {
-    		f[i] = new int[triangle.get(i).size()];
-    		for (int j = 0; j < triangle.get(i).size(); j++) {
-    			int path1 = Integer.MAX_VALUE, path2 = Integer.MAX_VALUE;
-    			if (j > 0) {
-    				path1 = f[i - 1][j - 1]; // left
-    			} 
-    			if (j < i) {
-    				path2 = f[i - 1][j]; // right
-    			}
-    			f[i][j] = Math.min(path1, path2) + triangle.get(i).get(j);
-    		}
-    	}
-    	
-    	int min = f[f.length - 1][0];
-    	for (int i = 1; i < f[f.length - 1].length; i++) {
-    		if (f[f.length - 1][i] < min) {
-    			min = f[f.length - 1][i];
-    		}
-    	}
-    	
-    	return min;
-    }
+	 * @param triangle: a list of lists of integers.
+	 * @return: An integer, minimum path sum.
+	 */
+	public int minimumTotal(int[][] triangle) {
+		int m = triangle.length;
+
+		// init
+		int[] f = new int[1];
+		f[0] = triangle[0][0];
+
+		// loop
+		for (int i = 1; i < m; i++) {
+			int n = triangle[i].length;
+			int[] nf = new int[n];
+			for (int j = 1; j < n - 1; j++) {
+				nf[j] = Math.min(f[j], f[j - 1]) + triangle[i][j];
+			}
+			nf[0] = f[0] + triangle[i][0];
+			if (n > 1) {
+				nf[n - 1] = f[n - 2] + triangle[i][n - 1];
+			}
+			f = nf;
+		}
+
+		int res = Integer.MAX_VALUE;
+		for (int i = 0; i < m; i++) {
+			res = Math.min(res, f[i]);
+		}
+
+		return res;
+	}
 
 }
