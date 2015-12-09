@@ -1,43 +1,33 @@
 package BinaryTreeAndDivideConquer;
 
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.Stack;
 
 public class BinarySearchTreeIterator {
-	Queue<TreeNode> result;
-	//@param root: The root of binary tree.
-    public BinarySearchTreeIterator(TreeNode root) {
-    	// do in-order traversal and store the result inside an array 
-    	result = inOrderTraversal(root);
-    }
-    
-    private LinkedList<TreeNode> inOrderTraversal(TreeNode node) {
-    	LinkedList<TreeNode> result = new LinkedList<TreeNode>();
-    	
-    	if (node == null) {
-    		return result;
-    	}
-    	
-    	LinkedList<TreeNode> left = inOrderTraversal(node.left);
-    	LinkedList<TreeNode> right = inOrderTraversal(node.right);
-    	for (int i = 0; i < left.size(); i++) {
-    		result.add(left.get(i));
-    	}
-    	result.add(node);
-    	for (int i = 0; i < right.size(); i++) {
-    		result.add(right.get(i));
-    	}
-    	
-    	return result;
-    }
+	private Stack<TreeNode> stack = new Stack<>();
+	private TreeNode curt; // current visited node
 
-    //@return: True if there has next node, or false
-    public boolean hasNext() {
-		return !result.isEmpty();
-    }
-    
-    //@return: return next node
-    public TreeNode next() {
-    	return result.remove();
-    }
+	//@param root: The root of binary tree.
+	public BinarySearchTreeIterator(TreeNode root) {
+		curt = root;
+	}
+
+	//@return: True if there has next node, or false
+	public boolean hasNext() {
+		return (curt != null || !stack.isEmpty());
+	}
+
+	//@return: return next node
+	public TreeNode next() {
+		// 找到最左结点
+		while (curt != null) {
+			stack.push(curt);
+			curt = curt.left;
+		}
+
+		curt = stack.pop();
+		TreeNode node = curt;
+		curt = curt.right;
+
+		return node;
+	}
 }
