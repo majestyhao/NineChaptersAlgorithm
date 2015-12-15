@@ -10,23 +10,24 @@ public class PartitionArray {
 		if (nums.length == 0) {
 			return 0;
 		}
-		int left = 0, right = nums.length - 1;
-		while (left <= right) {
-			while (left <= right && nums[left] < k) {
-				left++;
-			}
-			while (left <= right && nums[right] >= k) {
-				right--;
-			}
-			if (left <= right) {
-				swap(left, right, nums);
+		int start = 0, other = start, end = nums.length - 1;
+		while (start <= end) {
+			if (nums[start] < k) {
+				swap(nums, start, other);
+				start++;
+				other++;
+			} else if (nums[start] == k) {
+				start++;
+			} else {
+				swap(nums, start, end);
+				end--;
 			}
 		}
 
-		return left;
+		return other;
 	}
 
-	private void swap(int i, int j, int[] nums) {
+	private void swap(int[] nums, int i, int j) {
 		int tmp = nums[i];
 		nums[i] = nums[j];
 		nums[j] = tmp;
